@@ -51,3 +51,35 @@ class Donor(models.Model):
 
     def __str__(self):
         return f"{self.full_name} - {self.value}"
+
+
+GENDER_CHOICES = (
+    ("MALE", "MALE"),
+    ("FEMALE", "FEMALE"),
+    ("OTHER", "OTHER")
+)
+
+class ForOrgans(models.Model):
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    parent_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    address2 = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    district = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    pin_code = models.CharField(max_length=100)
+    number = models.CharField(max_length=100)
+    occupation = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    birth_date = models.DateField()
+    age = models.IntegerField()
+    gender = models.CharField(max_length=6,choices = GENDER_CHOICES)
+    blood_group = models.CharField(max_length=100)
+    emergency_number = models.CharField(max_length=100)
+    emergency_address = models.CharField(max_length=100)
+    identity_card = models.CharField(max_length=100)
+    card_number = models.CharField(max_length=100)
+    organs = models.JSONField()
+    tissue = models.JSONField()
