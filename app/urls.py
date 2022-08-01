@@ -8,6 +8,7 @@ router.register(r'slider', views.SliderViewSet)
 router.register(r'our-volunteers', views.OurVolunteersViewSet)
 router.register(r'contact-us', views.ContactViewSet)
 router.register(r'make-donation', views.DonorViewSet)
+router.register(r'for-organs', views.ForOrgansViewSet)
 
 
 urlpatterns = [

@@ -32,7 +32,30 @@ class DonorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+ORGANS_CHOICES = (
+    ("Heart", "Heart"),
+    ("Lungs", "Lungs"),
+    ("Kidneys", "Kidneys"),
+    ("Liver", "Liver"),
+    ("Pancreas", "Pancreas"),
+    ("Intestine", "Intestine"),
+    ("All", "All"),
+)
+
+TISSUES_CHOICES = (
+    ("Corneas/Eye Balls", "Corneas/Eye Balls"),
+    ("Skin", "Skin"),
+    ("Bones", "Bones"),
+    ("Heart Valves", "Heart Valves"),
+    ("Blood Valves", "Blood Valves"),
+    ("All", "All"),
+)
 class ForOrgansSerializer(serializers.ModelSerializer):
+    # organs = serializers.MultipleChoiceField(
+    #     choices=ORGANS_CHOICES)
+    # tissue = serializers.MultipleChoiceField(
+    #     choices=TISSUES_CHOICES)
+
     class Meta:
         model = ForOrgans
         fields = '__all__'
