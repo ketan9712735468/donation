@@ -1,3 +1,4 @@
+from xmlrpc.client import TRANSPORT_ERROR
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -83,3 +84,18 @@ class ForOrgans(models.Model):
     card_number = models.CharField(max_length=100)
     organs = models.JSONField()
     tissue = models.JSONField()
+
+
+class Sponsore(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(upload_to='sponsore/')
+    location = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+
+class Blog(models.Model):
+    heading = models.CharField(max_length=250, blank=True)
+    description = models.TextField(null=True, blank=True)
+    location = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='blog/')
+    date = models.DateField(auto_now=True)
