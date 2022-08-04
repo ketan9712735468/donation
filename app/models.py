@@ -99,3 +99,7 @@ class Blog(models.Model):
     location = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='blog/')
     date = models.DateField(auto_now=True)
+
+
+class Gallery(models.Model):
+    image = models.ImageField(upload_to='gallery/')

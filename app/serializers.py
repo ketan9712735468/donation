@@ -1,5 +1,5 @@
-from app.models import BecomeVolunteer, Contact, Donor, ForOrgans, OurVolunteers, Slider
 from rest_framework import serializers
+from app.models import BecomeVolunteer, Blog, Contact, Donor, ForOrgans, Gallery, OurVolunteers, Slider, Sponsore
 
 
 class BecomeVolunteerSerializer(serializers.ModelSerializer):
@@ -58,4 +58,22 @@ class ForOrgansSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ForOrgans
+        fields = '__all__'
+
+
+class SponsoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sponsore
+        fields = '__all__'
+
+
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = '__all__'
+
+
+class GallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gallery
         fields = '__all__'

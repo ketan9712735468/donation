@@ -1,6 +1,6 @@
 from rest_framework.response import Response
-from app.models import Contact, Donor, ForOrgans, OurVolunteers, Slider
-from app.serializers import BecomeVolunteerSerializer, ContactSerializer, DonorSerializer, ForOrgansSerializer, OurVolunteersSerializer, SliderSerializer
+from app.models import Blog, Contact, Donor, ForOrgans, Gallery, OurVolunteers, Slider, Sponsore
+from app.serializers import BecomeVolunteerSerializer, BlogSerializer, ContactSerializer, DonorSerializer, ForOrgansSerializer, GallerySerializer, OurVolunteersSerializer, SliderSerializer, SponsoreSerializer
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import status
@@ -44,3 +44,18 @@ class DonorViewSet(viewsets.ModelViewSet):
 class ForOrgansViewSet(viewsets.ModelViewSet):
     queryset = ForOrgans.objects.all()
     serializer_class = ForOrgansSerializer
+
+
+class SponsoreViewSet(viewsets.ModelViewSet):
+    queryset = Sponsore.objects.all()
+    serializer_class = SponsoreSerializer
+
+
+class BlogViewSet(viewsets.ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+
+class GalleryViewSet(viewsets.ModelViewSet):
+    queryset = Gallery.objects.all()
+    serializer_class = GallerySerializer
