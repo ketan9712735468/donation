@@ -11,7 +11,7 @@ class BecomeVolunteerView(APIView):
         serializer = BecomeVolunteerSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class SliderViewSet(viewsets.ModelViewSet):
@@ -27,6 +27,21 @@ class OurVolunteersViewSet(viewsets.ModelViewSet):
 class ContactViewSet(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+    def list(self, request, *args, **kwargs):
+        limit = request.GET.get('limit',None)
+        page = request.GET.get('page', None)
+        if limit and page:
+            data = int(limit)*int(page)
+            data = data - int(limit)
+            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data)
+            total = self.queryset.count()
+            contact = Contact.objects.all()[data:]
+            print("🚀 ~ file: views.py ~ line 39 ~ contact", contact)
+        else:
+            contact = Contact.objects.all()
+        serializer = self.get_serializer(contact, many=True)
+        return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

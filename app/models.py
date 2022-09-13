@@ -38,6 +38,7 @@ class Contact(models.Model):
     email = models.EmailField(max_length=100)
     number = models.CharField(max_length=10)
     message = models.TextField(null=True,blank=True)
+    created_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.full_name
@@ -49,6 +50,7 @@ class Donor(models.Model):
     email = models.EmailField(max_length=100)
     location = models.CharField(max_length=100)
     comment = models.TextField(null=True,blank=True)
+    date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.full_name} - {self.value}"
