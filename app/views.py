@@ -1,9 +1,10 @@
+from app.paginations import CustomPagination
 from rest_framework.response import Response
 from app.models import Blog, Contact, Donor, ForOrgans, Gallery, OurVolunteers, Slider, Sponsore
 from app.serializers import BecomeVolunteerSerializer, BlogSerializer, ContactSerializer, DonorSerializer, ForOrgansSerializer, GallerySerializer, OurVolunteersSerializer, SliderSerializer, SponsoreSerializer
 from rest_framework.views import APIView
-from rest_framework import viewsets
-from rest_framework import status
+from rest_framework import viewsets, status
+from rest_framework import filters
 
 
 class BecomeVolunteerView(APIView):
@@ -27,21 +28,24 @@ class OurVolunteersViewSet(viewsets.ModelViewSet):
 class ContactViewSet(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+    pagination_class = CustomPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['full_name', 'email']
 
-    def list(self, request, *args, **kwargs):
-        limit = request.GET.get('limit',None)
-        page = request.GET.get('page', None)
-        if limit and page:
-            data = int(limit)*int(page)
-            data = data - int(limit)
-            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data)
-            total = self.queryset.count()
-            contact = Contact.objects.all()[data:]
-            print("🚀 ~ file: views.py ~ line 39 ~ contact", contact)
-        else:
-            contact = Contact.objects.all()
-        serializer = self.get_serializer(contact, many=True)
-        return Response(serializer.data)
+    # def list(self, request, *args, **kwargs):
+    #     # limit = request.GET.get('limit',None)
+    #     # page = request.GET.get('page', None)
+    #     # if limit and page:
+    #     #     data = int(limit)*int(page)
+    #     #     data = data - int(limit)
+    #     #     print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data)
+    #     #     total = self.queryset.count()
+    #     #     contact = Contact.objects.all()[data:]
+    #     #     print("🚀 ~ file: views.py ~ line 39 ~ contact", contact)
+    #     # else:
+    #     contact = Contact.objects.all()
+    #     serializer = self.get_serializer(contact, many=True)
+    #     return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
