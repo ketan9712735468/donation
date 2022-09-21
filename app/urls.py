@@ -13,11 +13,10 @@ router.register(r'for-organs', views.ForOrgansViewSet)
 router.register(r'sponsore', views.SponsoreViewSet)
 router.register(r'blog', views.BlogViewSet) #
 router.register(r'gallery', views.GalleryViewSet)
+router.register(r'become-volunteer', views.BecomeVolunteerView)
 
 
 urlpatterns = [
-    path('become-volunteer/', views.BecomeVolunteerView.as_view(),
-         name='become-volunteer'),
     path('', include(router.urls)),
     path('login/', jwt_views.TokenObtainPairView.as_view(), name='login'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
