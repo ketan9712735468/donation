@@ -17,6 +17,7 @@ class BecomeVolunteerView(viewsets.ModelViewSet):
 class SliderViewSet(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
+    pagination_class = CustomPagination
 
 
 class OurVolunteersViewSet(viewsets.ModelViewSet):
@@ -77,3 +78,4 @@ class BlogViewSet(viewsets.ModelViewSet):
 class GalleryViewSet(viewsets.ModelViewSet):
     queryset = Gallery.objects.all()
     serializer_class = GallerySerializer
+    pagination_class = CustomPagination
